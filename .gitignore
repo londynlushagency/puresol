@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pages
+/app/protected/analytics
+
+# components
+/data/orders.ts

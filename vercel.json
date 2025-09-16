@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/webhooks/meta/campaign/scale": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/webhooks/meta/campaign/scale",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
