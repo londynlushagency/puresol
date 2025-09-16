@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useEffect } from "react";
+import { useEffect } from "react";
 // import { scaleAdSetsByROAS } from "@/lib/meta/api/scaleAdSetsByROAS";
 import { readCampaigns } from "@/lib/meta/api/scaleCampaign";
 
