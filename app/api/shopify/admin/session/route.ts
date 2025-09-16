@@ -34,6 +34,7 @@ const client = new GraphQLClient(endpoint, {
 //     }
 // `;
 
+
 const CUSTOMER_QUERY = gql`
    query customersAndOrders($first: Int!, $after: String) {
   customersCount {
