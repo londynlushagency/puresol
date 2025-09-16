@@ -5,7 +5,7 @@ import { useTransition, useEffect } from "react";
 import { readCampaigns } from "@/lib/meta/api/scaleCampaign";
 
 export default function MetaPage() {
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
   useEffect(() => {
     readCampaigns();
   }, []);

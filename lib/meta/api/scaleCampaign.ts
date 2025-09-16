@@ -1,11 +1,13 @@
 "use server";
 
-import bizSdk from "facebook-nodejs-business-sdk";
+// import bizSdk from "facebook-nodejs-business-sdk";
+import * as bizSdk from "facebook-nodejs-business-sdk";
+import { AdAccount, Campaign} from "facebook-nodejs-business-sdk";
 
-const AdAccount = bizSdk.AdAccount;
-const Campaign = bizSdk.Campaign;
-const AdSet = bizSdk.AdSet;
-const AdSetFields = AdSet.Fields;
+// const AdAccount = AdAccount;
+// const Campaign = bizSdk.Campaign;
+// const AdSet = bizSdk.AdSet;
+// const AdSetFields = AdSet.Fields;
 
 const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN!;
 const AD_ACCOUNT_ID = process.env.META_AD_ACCOUNT_ID!;
@@ -159,6 +161,6 @@ readCampaigns();
 // }
 
 
-function bugBrushCampaignScaler(roas: number) {
-  console.log(roas)
-}
+// function bugBrushCampaignScaler(roas: number) {
+//   console.log(roas)
+// }
