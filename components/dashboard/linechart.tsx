@@ -14,7 +14,7 @@ import {
 import { ChartContainer, ChartTooltipContent, ChartConfig } from "@/components/ui/chart";
 
 type ChartLineLabelProps = {
-  chartData: { month: string; [key: string]: number }[];
+  chartData: { month: number; [key: string]: number }[];
   chartConfig: ChartConfig;
   title?: string;
   description?: string;
