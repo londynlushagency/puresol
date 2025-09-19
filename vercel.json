@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/webhooks/meta/campaign/scale",
+      "path": "/api/webhooks/meta/campaign/scale/",
       "schedule": "0 9 * * *"
     }
   ]
