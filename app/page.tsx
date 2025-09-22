@@ -14,7 +14,7 @@ export default async function Home() {
   const { data, error } = await supabase
     .from('antiprojectpauser')
     .select()
-  console.log(data)
+  console.log(data,error)
 
   return (
     <main className="min-h-screen flex flex-col items-center">
