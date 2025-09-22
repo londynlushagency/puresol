@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { readCampaigns } from "@/lib/meta/api/scaleCampaign";
+import { createClient } from "@/lib/supabase/server";
 
 // Constant-time compare to prevent timing attacks
 function secureEqual(a: string, b: string) {
@@ -14,12 +15,21 @@ function secureEqual(a: string, b: string) {
 export async function GET(req: Request) {
   const incomingSecret = req.headers.get("x-meta-webbhook-secret") ?? "";
   const expectedSecret = process.env.META_WEBHOOK_SECRET ?? "";
-  const isVercelCron = req.headers.get("x-vercel-cron") !== null;
 
-  // ✅ Allow if request is from Vercel Cron OR matches secret
-  if (!isVercelCron && (!expectedSecret || !secureEqual(incomingSecret, expectedSecret))) {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('antiprojectpauser')
+    .select()
+  console.log(data, error)
+
+  // ❌ Reject immediately if secret doesn't match
+  if (!secureEqual(incomingSecret, expectedSecret)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  // ✅ Optional: detect if triggered by Vercel Cron for logging
+  const isVercelCron = req.headers.get("x-vercel-cron") !== null;
+  console.log(`Scale campaign job triggered. From Vercel Cron? ${isVercelCron}`);
 
   try {
     await readCampaigns();
