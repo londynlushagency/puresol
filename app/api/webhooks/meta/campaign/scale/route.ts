@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { readCampaigns } from "@/lib/meta/api/scaleCampaign";
 
-// Secure string compare to avoid timing attacks
+// Constant-time compare to prevent timing attacks
 function secureEqual(a: string, b: string) {
   const bufA = Buffer.from(a, "utf8");
   const bufB = Buffer.from(b, "utf8");
@@ -13,10 +13,11 @@ function secureEqual(a: string, b: string) {
 
 export async function GET(req: Request) {
   const incomingSecret = req.headers.get("x-meta-webbhook-secret") ?? "";
-  const expected = process.env.META_WEBHOOK_SECRET ?? "";
+  const expectedSecret = process.env.META_WEBHOOK_SECRET ?? "";
+  const isVercelCron = req.headers.get("x-vercel-cron") !== null;
 
-  // Check shared secret
-  if (!expected || !secureEqual(incomingSecret, expected)) {
+  // ✅ Allow if request is from Vercel Cron OR matches secret
+  if (!isVercelCron && (!expectedSecret || !secureEqual(incomingSecret, expectedSecret))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
