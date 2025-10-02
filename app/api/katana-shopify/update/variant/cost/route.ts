@@ -24,6 +24,7 @@ export async function GET() {
                 const shopifyUpdateResponse = fetch(
                     `http://localhost:3000/api/shopify/admin/products/variants/update/cost?productId=${shopifyItem.product.id}&variantId=${shopifyItem.id}&cost=${item.average_cost}`
                 )
+                console.log(shopifyUpdateResponse)
             }
         }
     }

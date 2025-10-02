@@ -10,7 +10,7 @@ if (!KATANA_API_KEY) {
 export async function GET() {
     try {
         let page = 1;
-        let results: any[] = [];
+        let results = [];
         let pageData = await fetchResults(page);
 
         while (pageData.length > 0) {
